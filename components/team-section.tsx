@@ -5,45 +5,45 @@ import { Instagram } from "lucide-react"
 
 const members = [
   {
-    name: "Lucas Martin",
+    name: "Gaspard Bry",
     role: "President",
     image: "/images/member-1.jpg",
     description: "Le capitaine de la comete. Il garde le cap et motive les troupes !",
     instagram: "#",
   },
   {
-    name: "Emma Dupont",
+    name: "Antoine Rousselle aka Gonzalez",
     role: "Vice-Presidente",
     image: "/images/member-2.jpg",
     description: "Bras droit de choc, elle organise tout avec une precision stellaire.",
     instagram: "#",
   },
   {
-    name: "Thomas Bernard",
+    name: "Mato Urbanac",
     role: "Tresorier",
     image: "/images/member-3.jpg",
     description: "Gardien du budget, il fait en sorte que chaque euro brille.",
     instagram: "#",
   },
   {
-    name: "Chloe Moreau",
-    role: "Secretaire",
+    name: "Julien Plomion",
+    role: "Responsable Partenariat",
     image: "/images/member-4.jpg",
     description: "La memoire de l'equipe, rien ne lui echappe dans la galaxie.",
     instagram: "#",
   },
   {
-    name: "Hugo Leroy",
+    name: "Remi Deroussent",
     role: "Responsable Communication",
     image: "/images/member-5.jpg",
     description: "Il diffuse nos messages a la vitesse de la lumiere sur les reseaux.",
     instagram: "#",
   },
   {
-    name: "Lea Petit",
+    name: "Mathys Dupont",
     role: "Responsable Evenements",
     image: "/images/member-6.jpg",
-    description: "Creatrice de soirees cosmiques et d'events memorables.",
+    description: "Createur de soirees cosmiques et d'events memorables.",
     instagram: "#",
   },
 ]
