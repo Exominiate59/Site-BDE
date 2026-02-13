@@ -8,7 +8,7 @@ export function Footer() {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Image
-              src="/images/logo_bde.png"
+              src="/images/logo_bde_bg.png"
               alt="Logo BDE Comete"
               width={32}
               height={32}

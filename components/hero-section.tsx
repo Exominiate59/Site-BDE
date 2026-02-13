@@ -94,7 +94,7 @@ export function HeroSection() {
         {/* Logo */}
         <div className="mb-8 flex justify-center">
           <Image
-            src="/images/logo_bde.png"
+            src="/images/logo_bde_bg.png"
             alt="Logo BDE Comete"
             width={280}
             height={280}

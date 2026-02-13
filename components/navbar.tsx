@@ -37,7 +37,7 @@ export function Navbar() {
         {/* Logo */}
         <a href="#accueil" className="flex items-center gap-2 group">
           <Image
-            src="/images/logo_bde.png"
+            src="/images/logo_bde_bg.png"
             alt="Logo BDE Comete"
             width={48}
             height={48}
