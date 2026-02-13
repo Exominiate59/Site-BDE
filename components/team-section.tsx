@@ -7,46 +7,48 @@ const members = [
   {
     name: "Gaspard Bry",
     role: "President",
-    image: "",
+    image: "/images/member-1.jpg",
     description: "Le capitaine de la comete. Il garde le cap et motive les troupes !",
     instagram: "#",
   },
   {
     name: "Antoine Rousselle aka Gonzalez",
-    role: "Vice-Presidente",
-    image: "",
-    description: "Bras droit de choc, elle organise tout avec une precision stellaire.",
+    role: "Vice-President",
+    image: "/images/member-2.jpg",
+    description: "Bras droit de choc, il organise tout avec une precision stellaire.",
     instagram: "#",
   },
   {
     name: "Mato Urbanac",
     role: "Tresorier",
-    image: "",
+    image: "/images/member-3.jpg",
     description: "Gardien du budget, il fait en sorte que chaque euro brille.",
     instagram: "#",
   },
   {
     name: "Julien Plomion",
     role: "Responsable Partenariat",
-    image: "",
+    image: "/images/member-4.jpg",
     description: "La memoire de l'equipe, rien ne lui echappe dans la galaxie.",
     instagram: "#",
   },
   {
     name: "Remi Deroussent",
     role: "Responsable Communication",
-    image: "",
+    image: "/images/member-5.jpg",
     description: "Il diffuse nos messages a la vitesse de la lumiere sur les reseaux.",
     instagram: "#",
   },
   {
     name: "Mathys Dupont",
     role: "Responsable Evenements",
-    image: "",
+    image: "/images/member-6.jpg",
     description: "Createur de soirees cosmiques et d'events memorables.",
     instagram: "#",
   },
 ]
+
+export { members }
 
 export function TeamSection() {
   return (
@@ -57,7 +59,7 @@ export function TeamSection() {
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Section header */}
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-medium text-primary uppercase tracking-widest mb-4">
+          <span className="inline-block text-sm font-medium text-accent uppercase tracking-widest mb-4">
             {"L'Equipage"}
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">

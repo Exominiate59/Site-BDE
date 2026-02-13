@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
+import Image from "next/image"
 
 const navLinks = [
   { href: "#accueil", label: "Accueil" },
   { href: "#equipe", label: "L'equipe" },
   { href: "#objectifs", label: "Objectifs" },
+  { href: "#jeux", label: "Jeux" },
   { href: "#programme", label: "Programme" },
   { href: "#contact", label: "Contact" },
 ]
@@ -31,15 +33,17 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+      <div className="mx-auto max-w-7xl px-6 py-3 flex items-center justify-between">
         {/* Logo */}
         <a href="#accueil" className="flex items-center gap-2 group">
-          <div className="relative">
-            <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/40 group-hover:border-primary transition-colors">
-              <div className="h-3 w-3 rounded-full bg-primary animate-glow-pulse" />
-            </div>
-          </div>
-          <span className="font-display text-xl font-bold tracking-tight text-foreground">
+          <Image
+            src="/images/logo_bde.png"
+            alt="Logo BDE Comete"
+            width={48}
+            height={48}
+            className="group-hover:scale-105 transition-transform duration-300"
+          />
+          <span className="font-display text-xl font-bold tracking-tight text-foreground hidden sm:block">
             Comete
           </span>
         </a>

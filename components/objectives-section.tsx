@@ -39,11 +39,12 @@ export function ObjectivesSection() {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full bg-primary/5 blur-[120px] -translate-y-1/2" />
+      <div className="absolute top-1/3 right-0 w-[300px] h-[300px] rounded-full bg-accent/5 blur-[100px]" />
 
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Section header */}
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-medium text-primary uppercase tracking-widest mb-4">
+          <span className="inline-block text-sm font-medium text-accent uppercase tracking-widest mb-4">
             Notre mission
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">

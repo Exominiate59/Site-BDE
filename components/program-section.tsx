@@ -42,9 +42,9 @@ const days = [
 const typeColors: Record<string, string> = {
   regulier: "bg-muted-foreground/20 text-muted-foreground",
   food: "bg-[hsl(30,80%,52%)]/20 text-[hsl(30,80%,60%)]",
-  gaming: "bg-primary/20 text-primary",
+  gaming: "bg-accent/20 text-accent",
   sport: "bg-[hsl(150,60%,45%)]/20 text-[hsl(150,60%,55%)]",
-  soiree: "bg-[hsl(330,70%,55%)]/20 text-[hsl(330,70%,65%)]",
+  soiree: "bg-primary/20 text-primary",
 }
 
 const typeLabels: Record<string, string> = {
@@ -66,7 +66,7 @@ export function ProgramSection() {
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Section header */}
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-medium text-primary uppercase tracking-widest mb-4">
+          <span className="inline-block text-sm font-medium text-accent uppercase tracking-widest mb-4">
             Semaine type
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
@@ -87,7 +87,7 @@ export function ProgramSection() {
               onClick={() => setActiveDay(index)}
               className={`px-6 py-3 rounded-lg font-display font-semibold text-sm transition-all duration-300 ${
                 activeDay === index
-                  ? "bg-primary text-primary-foreground shadow-[0_0_20px_rgba(0,200,220,0.25)]"
+                  ? "bg-primary text-primary-foreground shadow-[0_0_20px_rgba(120,80,220,0.3)]"
                   : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
               }`}
             >
@@ -99,7 +99,7 @@ export function ProgramSection() {
         {/* Events for selected day */}
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <Calendar className="text-primary" size={20} />
+            <Calendar className="text-accent" size={20} />
             <h3 className="font-display text-2xl font-bold text-foreground">
               {days[activeDay].day}
             </h3>
@@ -116,7 +116,7 @@ export function ProgramSection() {
               >
                 {/* Time */}
                 <div className="flex-shrink-0 text-center">
-                  <div className="flex items-center gap-1.5 text-primary">
+                  <div className="flex items-center gap-1.5 text-accent">
                     <Clock size={14} />
                     <span className="font-display font-bold text-lg">{event.time}</span>
                   </div>

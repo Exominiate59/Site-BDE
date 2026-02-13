@@ -30,7 +30,7 @@ export function ValuesSection() {
 
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-medium text-primary uppercase tracking-widest mb-4">
+          <span className="inline-block text-sm font-medium text-accent uppercase tracking-widest mb-4">
             ADN
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
@@ -45,7 +45,7 @@ export function ValuesSection() {
               className="text-center p-8 rounded-xl border border-border bg-card/20 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 group"
             >
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 border border-primary/20 mb-6 group-hover:bg-primary/20 transition-colors">
-                <value.icon className="text-primary" size={28} />
+                <value.icon className="text-accent" size={28} />
               </div>
               <h3 className="font-display text-xl font-bold text-foreground mb-3">
                 {value.title}
