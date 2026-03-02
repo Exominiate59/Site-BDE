@@ -1,68 +1,161 @@
 "use client"
 
 import Image from "next/image"
-import { Instagram } from "lucide-react"
+import { Instagram, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
 
 const members = [
   {
     name: "Gaspard Bry",
     role: "President",
-    image: "/assets/gaspard.jpg",
+    images: ["/assets/gaspard.jpg", "/assets/remi.jpg"],
     description: "Coordonne le BDE, représente les étudiants auprès de l'école, valide les décisions importantes.",
     instagram: "#",
   },
   {
     name: "Antoine Rousselle aka Gonzalez",
     role: "Vice-President",
-    image: "/images/member-2.jpg",
+    images: ["/images/member-2.jpg", "/assets/gonza2.png"],
     description: "Assiste le/la président·e, le/la remplace en cas d'absence, aide à la coordination globale.",
     instagram: "#",
   },
   {
     name: "Mato Urbanac",
     role: "Tresorier",
-    image: "/images/member-3.jpg",
+    images: ["/images/member-3.jpg"],
     description: "Gère le budget, les comptes, les remboursements, les financements et partenariats financiers.",
     instagram: "#",
   },
   {
     name: "Lucas Bernard",
     role: "Secretaire",
-    image: "/images/member-8.jpg",
+    images: ["/images/member-8.jpg"],
     description: "S'occupe des comptes rendus, des mails officiels, de l'organisation administrative et des plannings.",
     instagram: "#",
   },
   {
     name: "Mathys Dupont",
     role: "Responsable Evenementiel",
-    image: "/images/member-6.jpg",
+    images: ["/images/member-6.jpg"],
     description: "Organise les soirees, week-ends, tournois, intégrations, planning logistique des événements.",
     instagram: "#",
   },
   {
     name: "Remi Deroussent",
     role: "Responsable Communication",
-    image: "/assets/remi.jpg  ",
+    images: ["/assets/remi.jpg"],
     description: "Gère les réseaux sociaux, affiches, visuels, annonces et la promotion des événements.",
     instagram: "#",
   },
   {
     name: "Julien Plomion",
     role: "Responsable Partenariats / Sponsoring",
-    image: "/images/member-4.jpg",
+    images: ["/images/member-4.jpg"],
     description: "Contacte les bars, entreprises, sponsors, négocie des avantages étudiants et des financements.",
     instagram: "#",
   },
   {
     name: "Kyo Rose",
     role: "Responsable Vie Etudiante / Bien-etre",
-    image: "/images/member-7.jpg",
+    images: ["/images/member-7.jpg"],
     description: "Fait le lien avec les étudiants, remonte les problèmes, propose des actions inclusives et conviviales.",
     instagram: "#",
   },
 ]
 
 export { members }
+
+function MemberCard({ member, index }: { member: typeof members[0]; index: number }) {
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
+
+  const nextPhoto = () => {
+    setCurrentPhotoIndex((prev) => (prev + 1) % member.images.length)
+  }
+
+  const prevPhoto = () => {
+    setCurrentPhotoIndex((prev) => (prev - 1 + member.images.length) % member.images.length)
+  }
+
+  const hasMultiplePhotos = member.images.length > 1
+
+  return (
+    <div
+      key={member.name}
+      className="group relative rounded-xl border border-border bg-card/50 backdrop-blur-sm overflow-hidden hover:border-primary/40 transition-all duration-500"
+      style={{ animationDelay: `${index * 100}ms` }}
+    >
+      {/* Image */}
+      <div className="relative h-72 overflow-hidden">
+        <Image
+          src={member.images[currentPhotoIndex]}
+          alt={`Photo de ${member.name}`}
+          fill
+          unoptimized
+          priority={index === 0}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover group-hover:scale-105 transition-transform duration-700"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+
+        {/* Role badge */}
+        <div className="absolute top-4 left-4">
+          <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30 backdrop-blur-sm">
+            {member.role}
+          </span>
+        </div>
+
+        {/* Photo navigation arrows */}
+        {hasMultiplePhotos && (
+          <>
+            <button
+              onClick={prevPhoto}
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 hover:bg-black/60 text-white transition-all opacity-0 group-hover:opacity-100"
+              aria-label="Photo précédente"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={nextPhoto}
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 hover:bg-black/60 text-white transition-all opacity-0 group-hover:opacity-100"
+              aria-label="Photo suivante"
+            >
+              <ChevronRight size={20} />
+            </button>
+
+            {/* Photo counter */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2 py-1 rounded-full text-xs text-white bg-black/40 backdrop-blur-sm">
+              {currentPhotoIndex + 1} / {member.images.length}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Info */}
+      <div className="p-6">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="font-display text-xl font-bold text-foreground">
+            {member.name}
+          </h3>
+          <a
+            href={member.instagram}
+            className="text-muted-foreground hover:text-primary transition-colors"
+            aria-label={`Instagram de ${member.name}`}
+          >
+            <Instagram size={18} />
+          </a>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {member.description}
+        </p>
+      </div>
+
+      {/* Hover glow */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+        <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-primary/10 blur-[60px]" />
+      </div>
+    </div>
+  )
+}
 
 export function TeamSection() {
   return (
@@ -89,56 +182,7 @@ export function TeamSection() {
         {/* Team grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {members.map((member, index) => (
-            <div
-              key={member.name}
-              className="group relative rounded-xl border border-border bg-card/50 backdrop-blur-sm overflow-hidden hover:border-primary/40 transition-all duration-500"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Image */}
-              <div className="relative h-72 overflow-hidden">
-                <Image
-                  src={member.image}
-                  alt={`Photo de ${member.name}`}
-                  fill
-                  unoptimized
-                  priority={index === 0}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
-
-                {/* Role badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30 backdrop-blur-sm">
-                    {member.role}
-                  </span>
-                </div>
-              </div>
-
-              {/* Info */}
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-display text-xl font-bold text-foreground">
-                    {member.name}
-                  </h3>
-                  <a
-                    href={member.instagram}
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                    aria-label={`Instagram de ${member.name}`}
-                  >
-                    <Instagram size={18} />
-                  </a>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {member.description}
-                </p>
-              </div>
-
-              {/* Hover glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-primary/10 blur-[60px]" />
-              </div>
-            </div>
+            <MemberCard key={member.name} member={member} index={index} />
           ))}
         </div>
       </div>

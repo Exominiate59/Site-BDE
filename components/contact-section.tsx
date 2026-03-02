@@ -12,7 +12,7 @@ const socials = [
     icon: MessageCircle,
     label: "Discord",
     handle: "BDE Comete",
-    href: "#",
+    href: "https://discord.gg/JPCVDFNHr",
     color: "hover:text-[hsl(235,86%,65%)]",
   },
   {

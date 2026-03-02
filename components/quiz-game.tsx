@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import Image from "next/image"
 import { CheckCircle2, XCircle, RotateCcw, Trophy, ChevronRight } from "lucide-react"
 
@@ -86,9 +86,14 @@ export function QuizGame() {
   const [score, setScore] = useState(0)
   const [showResult, setShowResult] = useState(false)
   const [isFinished, setIsFinished] = useState(false)
-  const [shuffledQuestions] = useState(() => {
-    return [...quizQuestions].sort(() => Math.random() - 0.5)
-  })
+  const [shuffledQuestions, setShuffledQuestions] = useState(quizQuestions)
+  const [isClient, setIsClient] = useState(false)
+
+  // Shuffle questions only on client side to avoid hydration mismatch
+  useEffect(() => {
+    setShuffledQuestions([...quizQuestions].sort(() => Math.random() - 0.5))
+    setIsClient(true)
+  }, [])
 
   const question = shuffledQuestions[currentQuestion]
   const isCorrect = selectedAnswer === question?.correctIndex
