@@ -82,6 +82,9 @@ export function ObjectivesSection() {
               </p>
             </div>
           ))}
+
+
+          
         </div>
       </div>
     </section>

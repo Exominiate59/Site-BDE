@@ -7,14 +7,13 @@ const days = [
   {
     day: "Lundi",
     events: [
-      { time: "12h00", title: "Permanence BDE", location: "Foyer", type: "regulier" },
+      { time: "16h00", title: "Dégustation à l'aveugle", location: "Cafétaria"},
     ],
   },
   {
     day: "Mardi",
     events: [
-      { time: "12h30", title: "Midi Pizza", location: "Cafeteria", type: "food" },
-      { time: "18h00", title: "Tournoi FIFA", location: "Salle commune", type: "gaming" },
+      { time: "12h00", title: "Repas offert", location: "Cafeteria"},
     ],
   },
   {
@@ -26,15 +25,13 @@ const days = [
   {
     day: "Jeudi",
     events: [
-      { time: "12h00", title: "Vente de gateaux", location: "Hall principal", type: "food" },
-      { time: "20h00", title: "Soiree etudiante", location: "Bar Le Cosmos", type: "soiree" },
+      { time: "21h00", title: "After work", location: "Le Square", type: "soiree" },
     ],
   },
   {
     day: "Vendredi",
     events: [
-      { time: "12h30", title: "Chill & musique", location: "Foyer", type: "regulier" },
-      { time: "17h00", title: "Afterwork", location: "Terrasse", type: "soiree" },
+      { time: "21h00", title: "LAN", location: "EPITECH", type: "soiree" },
     ],
   },
 ]
@@ -48,7 +45,7 @@ const typeColors: Record<string, string> = {
 }
 
 const typeLabels: Record<string, string> = {
-  regulier: "Regulier",
+  regulier: "Reguli®er",
   food: "Food",
   gaming: "Gaming",
   sport: "Sport",
@@ -132,9 +129,7 @@ export function ProgramSection() {
                       {event.title}
                     </h4>
                     <span
-                      className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${typeColors[event.type]}`}
                     >
-                      {typeLabels[event.type]}
                     </span>
                   </div>
                   <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -149,6 +144,24 @@ export function ProgramSection() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Announcement teaser */}
+        <div className="mt-16 text-center max-w-2xl mx-auto p-8 rounded-2xl border border-primary/30 bg-card/40 backdrop-blur-sm">
+          <h3 className="font-display text-2xl md:text-3xl font-bold text-primary mb-6 uppercase tracking-wide">
+            ANNONCE FUTUR PARTENARIAT
+          </h3>
+          <div className="text-muted-foreground space-y-3 leading-relaxed">
+            <p className="font-semibold text-foreground">
+              “Le BDE a signé un nouveau partenariat…”
+            </p>
+            <p>Un lieu qui ne ferme (presque) jamais.</p>
+            <p>Un endroit qui sauve des vies après 23h.</p>
+            <p>Un parfum reconnaissable à 200 mètres.</p>
+            <p className="text-accent font-semibold">
+              🔥 Ça tourne… et ça va vous régaler.
+            </p>
           </div>
         </div>
       </div>

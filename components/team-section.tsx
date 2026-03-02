@@ -7,43 +7,57 @@ const members = [
   {
     name: "Gaspard Bry",
     role: "President",
-    image: "/images/member-1.jpg",
-    description: "Le capitaine de la comete. Il garde le cap et motive les troupes !",
+    image: "/assets/gaspard.jpg",
+    description: "Coordonne le BDE, représente les étudiants auprès de l'école, valide les décisions importantes.",
     instagram: "#",
   },
   {
     name: "Antoine Rousselle aka Gonzalez",
     role: "Vice-President",
     image: "/images/member-2.jpg",
-    description: "Bras droit de choc, il organise tout avec une precision stellaire.",
+    description: "Assiste le/la président·e, le/la remplace en cas d'absence, aide à la coordination globale.",
     instagram: "#",
   },
   {
     name: "Mato Urbanac",
     role: "Tresorier",
     image: "/images/member-3.jpg",
-    description: "Gardien du budget, il fait en sorte que chaque euro brille.",
+    description: "Gère le budget, les comptes, les remboursements, les financements et partenariats financiers.",
     instagram: "#",
   },
   {
-    name: "Julien Plomion",
-    role: "Responsable Partenariat",
-    image: "/images/member-4.jpg",
-    description: "La memoire de l'equipe, rien ne lui echappe dans la galaxie.",
+    name: "Lucas Bernard",
+    role: "Secretaire",
+    image: "/images/member-8.jpg",
+    description: "S'occupe des comptes rendus, des mails officiels, de l'organisation administrative et des plannings.",
+    instagram: "#",
+  },
+  {
+    name: "Mathys Dupont",
+    role: "Responsable Evenementiel",
+    image: "/images/member-6.jpg",
+    description: "Organise les soirees, week-ends, tournois, intégrations, planning logistique des événements.",
     instagram: "#",
   },
   {
     name: "Remi Deroussent",
     role: "Responsable Communication",
-    image: "/images/member-5.jpg",
-    description: "Il diffuse nos messages a la vitesse de la lumiere sur les reseaux.",
+    image: "/assets/remi.jpg  ",
+    description: "Gère les réseaux sociaux, affiches, visuels, annonces et la promotion des événements.",
     instagram: "#",
   },
   {
-    name: "Mathys Dupont",
-    role: "Responsable Evenements",
-    image: "/images/member-6.jpg",
-    description: "Createur de soirees cosmiques et d'events memorables.",
+    name: "Julien Plomion",
+    role: "Responsable Partenariats / Sponsoring",
+    image: "/images/member-4.jpg",
+    description: "Contacte les bars, entreprises, sponsors, négocie des avantages étudiants et des financements.",
+    instagram: "#",
+  },
+  {
+    name: "Kyo Rose",
+    role: "Responsable Vie Etudiante / Bien-etre",
+    image: "/images/member-7.jpg",
+    description: "Fait le lien avec les étudiants, remonte les problèmes, propose des actions inclusives et conviviales.",
     instagram: "#",
   },
 ]
@@ -63,7 +77,7 @@ export function TeamSection() {
             {"L'Equipage"}
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
-            {"6 etoiles, 1 comete"}
+            {"8 etoiles, 1 comete"}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
             {
@@ -86,6 +100,9 @@ export function TeamSection() {
                   src={member.image}
                   alt={`Photo de ${member.name}`}
                   fill
+                  unoptimized
+                  priority={index === 0}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
