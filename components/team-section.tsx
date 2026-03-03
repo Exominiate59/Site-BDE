@@ -8,14 +8,14 @@ const members = [
   {
     name: "Gaspard Bry",
     role: "President",
-    images: ["/assets/gaspard.jpg", "/assets/remi.jpg"],
+    images: ["/assets/gaspard2.jpg", "/assets/gaspard.jpg", "/assets/gaspard3.jpg", "/assets/gaspard5.jpg"],
     description: "Coordonne le BDE, représente les étudiants auprès de l'école, valide les décisions importantes.",
     instagram: "#",
   },
   {
     name: "Antoine Rousselle aka Gonzalez",
     role: "Vice-President",
-    images: ["/images/member-2.jpg", "/assets/gonza2.png"],
+    images: ["/images/member-2.jpg", "/assets/gonza2.png", "/assets/gonza3.png" ],
     description: "Assiste le/la président·e, le/la remplace en cas d'absence, aide à la coordination globale.",
     instagram: "#",
   },
@@ -85,7 +85,7 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Image */}
-      <div className="relative h-72 overflow-hidden">
+      <div className="relative h-96 overflow-hidden">
         <Image
           src={member.images[currentPhotoIndex]}
           alt={`Photo de ${member.name}`}
