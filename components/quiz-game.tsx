@@ -35,7 +35,7 @@ const quizQuestions: QuizQuestion[] = [
     options: ["President", "Responsable Com", "Tresorier", "Vice-President"],
     correctIndex: 2,
     memberName: "Mato Urbanac",
-    memberImage: "/images/member-3.jpg",
+    memberImage: "/images/mato1.jpg",
     funFact: "Gardien du budget, il fait en sorte que chaque euro brille !",
   },
   {
@@ -59,7 +59,7 @@ const quizQuestions: QuizQuestion[] = [
     options: ["Julien Plomion", "Mato Urbanac", "Gaspard Bry", "Mathys Dupont"],
     correctIndex: 3,
     memberName: "Mathys Dupont",
-    memberImage: "/images/member-6.jpg",
+    memberImage: "/images/mathys1.jpg",
     funFact: "Createur de soirees cosmiques et d'events memorables, c'est lui !",
   },
   {

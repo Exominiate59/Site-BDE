@@ -15,19 +15,19 @@ const members = [
   {
     name: "Antoine Rousselle aka Gonzalez",
     role: "Vice-President",
-    images: ["/images/member-2.jpg", "/assets/gonza2.png", "/assets/gonza3.png" ],
+    images: ["/images/gonza1.png", "/assets/gonza2.png", "/assets/gonza3.png" ],
     description: "Assiste le/la président·e, le/la remplace en cas d'absence, aide à la coordination globale.",
     instagram: "#",
   },
   {
     name: "Mato Urbanac",
     role: "Tresorier",
-    images: ["/images/member-3.jpg"],
+    images: ["/images/mato1.jpg", "/images/mato2.jpg"],
     description: "Gère le budget, les comptes, les remboursements, les financements et partenariats financiers.",
     instagram: "#",
   },
   {
-    name: "Lucas Bernard",
+    name: "Alexis Chalopin",
     role: "Secretaire",
     images: ["/images/member-8.jpg"],
     description: "S'occupe des comptes rendus, des mails officiels, de l'organisation administrative et des plannings.",
@@ -36,7 +36,7 @@ const members = [
   {
     name: "Mathys Dupont",
     role: "Responsable Evenementiel",
-    images: ["/images/member-6.jpg"],
+    images: ["/images/mathys1.jpg"],
     description: "Organise les soirees, week-ends, tournois, intégrations, planning logistique des événements.",
     instagram: "#",
   },
