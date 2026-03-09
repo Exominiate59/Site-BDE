@@ -57,7 +57,7 @@ const members = [
   {
     name: "Kyo Rose",
     role: "Responsable Vie Etudiante / Bien-etre",
-    images: ["/images/member-7.jpg"],
+    images: ["/images/kyo.JPG", "/images/kyo2.JPG", "/images/kyo3.JPG", "/images/kyo4.JPG"],
     description: "Fait le lien avec les étudiants, remonte les problèmes, propose des actions inclusives et conviviales.",
     instagram: "#",
   },

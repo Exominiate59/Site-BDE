@@ -20,7 +20,7 @@ export function Footer() {
 
           {/* Copyright */}
           <p className="text-sm text-muted-foreground">
-            {"BDE Comete 2025-2026. Fait avec passion par l'equipe."}
+            {"BDE Comete 2026-2027. Fait avec passion par l'equipe."}
           </p>
 
           {/* Links */}
