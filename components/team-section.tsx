@@ -50,7 +50,7 @@ const members = [
   {
     name: "Julien Plomion",
     role: "Responsable Partenariats / Sponsoring",
-    images: ["/images/member-4.jpg"],
+    images: ["/images/ju1.png", "/images/ju2.JPG"],
     description: "Contacte les bars, entreprises, sponsors, négocie des avantages étudiants et des financements.",
     instagram: "#",
   },
