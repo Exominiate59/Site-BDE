@@ -7,31 +7,35 @@ const days = [
   {
     day: "Lundi",
     events: [
-      { time: "16h00", title: "Dégustation à l'aveugle", location: "Cafétaria"},
+      { time: "09h00", title: "Lundi 16 — Petit déjeuner", location: "Cafétéria", type: "food" },
+      { time: "09h00", title: "Lundi 23 — Petit déjeuner", location: "Cafétéria", type: "food" },
     ],
   },
   {
     day: "Mardi",
     events: [
-      { time: "12h00", title: "Repas offert", location: "Cafeteria"},
+      { time: "12h00", title: "Mardi 24 — Repas offert", location: "Cafétéria", type: "food" },
     ],
   },
   {
     day: "Mercredi",
     events: [
-      { time: "14h00", title: "Apres-midi sportif", location: "Gymnase", type: "sport" },
+      { time: "12h00", title: "Mercredi 18 — Repas offert", location: "Cafétéria", type: "food" },
+      { time: "16h00", title: "Mercredi 25 — Crêpes (après Stumper)", location: "Cafétéria", type: "food" },
     ],
   },
   {
     day: "Jeudi",
     events: [
-      { time: "21h00", title: "After work", location: "Le Square", type: "soiree" },
+      { time: "20h00", title: "Jeudi 19 — After work", location: "Le Square", type: "soiree" },
+      { time: "12h00", title: "Jeudi 26 — BBQ", location: "Cours", type: "food" },
     ],
   },
   {
     day: "Vendredi",
     events: [
-      { time: "21h00", title: "LAN", location: "EPITECH", type: "soiree" },
+      { time: "15h00", title: "Vendredi 20 — Dégustation à l'aveugle", location: "Cafétéria", type: "food" },
+      { time: "21h00", title: "Vendredi 27 — LAN", location: "Salle informatique (EPITECH)", type: "gaming" },
     ],
   },
 ]
@@ -162,6 +166,7 @@ export function ProgramSection() {
             <p className="text-accent font-semibold">
               🔥 Ça tourne… et ça va vous régaler.
             </p>
+            <p>(Seulement si on est élu·e, donc votez bien&nbsp;!)</p>
           </div>
         </div>
       </div>

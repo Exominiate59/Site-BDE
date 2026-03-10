@@ -19,7 +19,7 @@ const quizQuestions: QuizQuestion[] = [
     options: ["Mato Urbanac", "Gaspard Bry", "Julien Plomion", "Remi Deroussent"],
     correctIndex: 1,
     memberName: "Gaspard Bry",
-    memberImage: "/images/member-1.jpg",
+    memberImage: "/assets/gaspard.jpg",
     funFact: "Il est le capitaine de la comete et motive les troupes au quotidien !",
   },
   {
@@ -27,7 +27,7 @@ const quizQuestions: QuizQuestion[] = [
     options: ["El Capitan", "Gonzalez", "Le Rocket", "Turbo"],
     correctIndex: 1,
     memberName: "Antoine Rousselle",
-    memberImage: "/images/member-2.jpg",
+    memberImage: "/images/gonza1.png",
     funFact: "Aussi connu sous le nom de Gonzalez, il organise tout avec precision.",
   },
   {
@@ -43,7 +43,7 @@ const quizQuestions: QuizQuestion[] = [
     options: ["Evenements", "Communication", "Tresorerie", "Partenariats"],
     correctIndex: 3,
     memberName: "Julien Plomion",
-    memberImage: "/images/member-4.jpg",
+    memberImage: "/images/ju1.png",
     funFact: "La memoire de l'equipe, rien ne lui echappe dans la galaxie des partenaires.",
   },
   {
@@ -51,21 +51,21 @@ const quizQuestions: QuizQuestion[] = [
     options: ["Mathys Dupont", "Gaspard Bry", "Remi Deroussent", "Antoine Rousselle"],
     correctIndex: 2,
     memberName: "Remi Deroussent",
-    memberImage: "/images/member-5.jpg",
+    memberImage: "/assets/remi.jpg",
     funFact: "Il diffuse les messages du BDE a la vitesse de la lumiere sur les reseaux !",
   },
   {
     question: "Qui est le responsable evenements du BDE ?",
-    options: ["Julien Plomion", "Mato Urbanac", "Gaspard Bry", "Mathys Dupont"],
+    options: ["Julien Plomion", "Mato Urbanac", "Gaspard Bry", "Alexis Chalopin"],
     correctIndex: 3,
-    memberName: "Mathys Dupont",
-    memberImage: "/images/mathys1.jpg",
+    memberName: "Alexis Chalopin",
+    memberImage: "/assets/alexis.png",
     funFact: "Createur de soirees cosmiques et d'events memorables, c'est lui !",
   },
   {
     question: "Combien de membres composent le BDE Comete ?",
     options: ["4", "5", "6", "8"],
-    correctIndex: 2,
+    correctIndex: 3,
     memberName: "Toute l'equipe",
     memberImage: "/images/logo_bde.png",
     funFact: "6 etoiles forment cette comete legendaire !",
@@ -78,7 +78,37 @@ const quizQuestions: QuizQuestion[] = [
     memberImage: "/images/logo_bde.png",
     funFact: "Comete, parce qu'on laisse une trainee lumineuse partout ou on passe !",
   },
+
+  {
+    question: "Quel est le rôle de Mathys Dupont au sein du BDE ?",
+    options: ["Secretaire", "Tresorier", "Responsable Evenementiel", "Responsable Communication"],
+    correctIndex: 0,
+    memberName: "Mathys Dupont",
+    memberImage: "/assets/mathys.png",
+    funFact: "Mathys est secrétaire : il s'occupe des comptes rendus et de l'organisation administrative.",
+  },
+
+  {
+    question: "Qui s'occupe de la vie étudiante et du bien-être au sein du BDE ?",
+    options: ["Kyo Rose", "Antoine Rousselle", "Alexis Chalopin", "Remi Deroussent"],
+    correctIndex: 0,
+    memberName: "Kyo Rose",
+    memberImage: "/images/kyo.JPG",
+    funFact: "Kyo organise des actions pour le bien-être étudiant et veille à l'ambiance sur le campus.",
+  },
+
 ]
+
+const normalizedQuestions: QuizQuestion[] = quizQuestions.filter((q) => {
+  return (
+    typeof q.question === "string" &&
+    Array.isArray(q.options) &&
+    q.options.length > 1 &&
+    Number.isInteger(q.correctIndex) &&
+    q.correctIndex >= 0 &&
+    q.correctIndex < q.options.length
+  )
+})
 
 export function QuizGame() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -86,12 +116,12 @@ export function QuizGame() {
   const [score, setScore] = useState(0)
   const [showResult, setShowResult] = useState(false)
   const [isFinished, setIsFinished] = useState(false)
-  const [shuffledQuestions, setShuffledQuestions] = useState(quizQuestions)
+  const [shuffledQuestions, setShuffledQuestions] = useState(normalizedQuestions)
   const [isClient, setIsClient] = useState(false)
 
   // Shuffle questions only on client side to avoid hydration mismatch
   useEffect(() => {
-    setShuffledQuestions([...quizQuestions].sort(() => Math.random() - 0.5))
+    setShuffledQuestions([...normalizedQuestions].sort(() => Math.random() - 0.5))
     setIsClient(true)
   }, [])
 
@@ -100,6 +130,7 @@ export function QuizGame() {
 
   const handleSelect = useCallback(
     (index: number) => {
+      if (!question) return
       if (selectedAnswer !== null) return
       setSelectedAnswer(index)
       setShowResult(true)
@@ -129,6 +160,7 @@ export function QuizGame() {
   }, [])
 
   const getScoreMessage = () => {
+    if (shuffledQuestions.length === 0) return "Le quiz n'est pas disponible pour le moment."
     const pct = score / shuffledQuestions.length
     if (pct === 1) return "Parfait ! Tu connais le BDE par coeur !"
     if (pct >= 0.75) return "Bravo ! Tu es deja un(e) fan du BDE !"
@@ -156,6 +188,15 @@ export function QuizGame() {
           <RotateCcw size={18} />
           Recommencer
         </button>
+      </div>
+    )
+  }
+
+  if (!question || shuffledQuestions.length === 0) {
+    return (
+      <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card/40 backdrop-blur-sm">
+        <h3 className="font-display text-2xl font-bold text-foreground mb-2">Quiz indisponible</h3>
+        <p className="text-muted-foreground">Certaines donnees du quiz sont invalides. Reessaie plus tard.</p>
       </div>
     )
   }
