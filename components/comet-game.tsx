@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react"
 import { Play, RotateCcw, Trophy } from "lucide-react"
+import { supabase } from "@/lib/supabase"
 
 interface GameObject {
   x: number
@@ -37,9 +38,109 @@ export function CometGame() {
   const [gameOver, setGameOver] = useState(false)
   const [gameStarted, setGameStarted] = useState(false)
   const [highScore, setHighScore] = useState(0)
+  const [pseudo, setPseudo] = useState("")
+  const [saveMessage, setSaveMessage] = useState("")
 
   const animRef = useRef<number>(0)
   const pointerXRef = useRef(CANVAS_W / 2)
+  const scoreSavedRef = useRef(false)
+
+  const loadPseudoHighScore = useCallback(async (name: string) => {
+    if (!name.trim()) {
+      setHighScore(0)
+      return
+    }
+
+    if (!supabase) {
+      setSaveMessage("Supabase non configure")
+      return
+    }
+
+    const { data, error } = await supabase
+      .from("comet_scores")
+      .select("best_score")
+      .eq("pseudo", name.trim())
+      .single()
+
+    if (error) {
+      if (error.code === "PGRST116") {
+        setHighScore(0)
+        return
+      }
+      setSaveMessage("Erreur lors du chargement du record")
+      return
+    }
+
+    setHighScore(data?.best_score ?? 0)
+  }, [])
+
+  const saveHighScore = useCallback(async () => {
+    const finalScore = gameStateRef.current.score
+    const name = pseudo.trim()
+
+    if (!name || finalScore <= 0 || scoreSavedRef.current) {
+      return
+    }
+
+    if (!supabase) {
+      setSaveMessage("Supabase non configure")
+      return
+    }
+
+    scoreSavedRef.current = true
+
+    const { data: existing, error: existingError } = await supabase
+      .from("comet_scores")
+      .select("best_score")
+      .eq("pseudo", name)
+      .single()
+
+    if (existingError && existingError.code !== "PGRST116") {
+      setSaveMessage("Erreur lors de la sauvegarde")
+      scoreSavedRef.current = false
+      return
+    }
+
+    if (!existing || finalScore > (existing.best_score ?? 0)) {
+      const { error: upsertError } = await supabase
+        .from("comet_scores")
+        .upsert({ pseudo: name, best_score: finalScore }, { onConflict: "pseudo" })
+
+      if (upsertError) {
+        setSaveMessage("Erreur lors de la sauvegarde")
+        scoreSavedRef.current = false
+        return
+      }
+
+      setHighScore(finalScore)
+      setSaveMessage("Record sauvegarde ✅")
+      return
+    }
+
+    setHighScore(existing.best_score)
+    setSaveMessage("Record deja en base")
+  }, [pseudo])
+
+  useEffect(() => {
+    const storedPseudo = typeof window !== "undefined" ? localStorage.getItem("comet_pseudo") : null
+    if (storedPseudo) {
+      setPseudo(storedPseudo)
+      void loadPseudoHighScore(storedPseudo)
+    }
+  }, [loadPseudoHighScore])
+
+  useEffect(() => {
+    if (!pseudo.trim()) return
+    if (typeof window !== "undefined") {
+      localStorage.setItem("comet_pseudo", pseudo.trim())
+    }
+  }, [pseudo])
+
+  useEffect(() => {
+    if (gameOver) {
+      void saveHighScore()
+    }
+  }, [gameOver, saveHighScore])
 
   // Initialize background stars
   useEffect(() => {
@@ -300,6 +401,8 @@ export function CometGame() {
     setLives(3)
     setGameOver(false)
     setGameStarted(true)
+    setSaveMessage("")
+    scoreSavedRef.current = false
     animRef.current = requestAnimationFrame(gameLoop)
   }, [gameLoop])
 
@@ -335,6 +438,20 @@ export function CometGame() {
 
   return (
     <div className="flex flex-col items-center">
+      <div className="w-full max-w-[400px] mb-3">
+        <input
+          value={pseudo}
+          onChange={(e) => {
+            const nextPseudo = e.target.value.slice(0, 24)
+            setPseudo(nextPseudo)
+            setSaveMessage("")
+            void loadPseudoHighScore(nextPseudo)
+          }}
+          placeholder="Ton pseudo"
+          className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/40"
+        />
+      </div>
+
       {/* Game HUD */}
       <div className="w-full max-w-[400px] flex items-center justify-between mb-4 px-2">
         <div className="flex items-center gap-2">
@@ -420,6 +537,7 @@ export function CometGame() {
       <p className="text-xs text-muted-foreground mt-3">
         Deplace ta souris ou ton doigt pour piloter la fusee
       </p>
+      {saveMessage && <p className="text-xs text-muted-foreground mt-1">{saveMessage}</p>}
     </div>
   )
 }
